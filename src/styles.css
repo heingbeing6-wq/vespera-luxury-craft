@@ -1,0 +1,186 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-serif: "Cormorant Garamond", ui-serif, Georgia, serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+/*
+ * Design system definition.
+ *
+ * The @theme inline block maps CSS custom properties to Tailwind utility
+ * classes (e.g. --color-primary -> bg-primary, text-primary).
+ *
+ * The :root and .dark blocks define the actual color values using oklch.
+ * All colors MUST use oklch format.
+ *
+ * To add a new semantic color:
+ * 1. Add the variable to :root (light value) and .dark (dark value)
+ * 2. Register it in @theme inline as --color-<name>: var(--<name>)
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  --radius: 0.625rem;
+  /* VESPERA light theme — warm cream / bronze */
+  --background: #f7f2e9;
+  --foreground: #1a1613;
+  --card: #ffffff;
+  --card-foreground: #1a1613;
+  --popover: #ffffff;
+  --popover-foreground: #1a1613;
+  --primary: #8a6a4f;
+  --primary-foreground: #f7f2e9;
+  --secondary: #efe7d8;
+  --secondary-foreground: #1a1613;
+  --muted: #efe7d8;
+  --muted-foreground: oklch(0.42 0.02 55);
+  --accent: #8a6a4f;
+  --accent-foreground: #f7f2e9;
+  --destructive: oklch(0.55 0.18 25);
+  --destructive-foreground: #f7f2e9;
+  --border: oklch(0.86 0.015 60);
+  --input: #efe7d8;
+  --ring: #8a6a4f;
+  --emerald: oklch(0.55 0.14 155);
+  --emerald-foreground: oklch(0.98 0 0);
+  --gold: #8a6a4f;
+  --cream: #f7f2e9;
+  --charcoal: #1a1613;
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(0.984 0.003 247.858);
+  --sidebar-foreground: oklch(0.129 0.042 264.695);
+  --sidebar-primary: oklch(0.208 0.042 265.755);
+  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-accent: oklch(0.968 0.007 247.896);
+  --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
+  --sidebar-border: oklch(0.929 0.013 255.508);
+  --sidebar-ring: oklch(0.704 0.04 256.788);
+}
+
+.dark {
+  /* VESPERA dark luxury palette */
+  --background: #0b0b0b;
+  --foreground: #f4efe6;
+  --card: #121110;
+  --card-foreground: #f4efe6;
+  --popover: #121110;
+  --popover-foreground: #f4efe6;
+  --primary: #a1826a;
+  --primary-foreground: #0b0b0b;
+  --secondary: #1a1917;
+  --secondary-foreground: #f4efe6;
+  --muted: #171615;
+  --muted-foreground: oklch(0.72 0.015 55);
+  --accent: #a1826a;
+  --accent-foreground: #0b0b0b;
+  --destructive: oklch(0.55 0.18 25);
+  --destructive-foreground: #f4efe6;
+  --border: oklch(0.24 0.008 60);
+  --input: #1a1917;
+  --ring: #a1826a;
+  --gold: #a1826a;
+  --cream: #f4efe6;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-serif);
+    letter-spacing: -0.01em;
+  }
+}
+
+@utility text-gold {
+  color: var(--gold);
+}
+@utility bg-gold {
+  background-color: var(--gold);
+}
+@utility border-gold {
+  border-color: var(--gold);
+}
+@utility text-cream {
+  color: var(--cream);
+}
+@utility bg-cream {
+  background-color: var(--cream);
+}
+@utility glow-amber {
+  box-shadow: 0 0 0 1px color-mix(in oklab, var(--gold) 40%, transparent),
+    0 10px 40px -10px color-mix(in oklab, var(--gold) 40%, transparent);
+}
+@utility glow-amber-sm {
+  box-shadow: 0 0 0 1px color-mix(in oklab, var(--gold) 30%, transparent),
+    0 6px 20px -6px color-mix(in oklab, var(--gold) 30%, transparent);
+}
+@utility hero-radial {
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 30%, color-mix(in oklab, var(--gold) 18%, transparent), transparent 70%),
+    radial-gradient(ellipse 80% 60% at 50% 100%, color-mix(in oklab, var(--gold) 8%, transparent), transparent 70%);
+}
+@utility line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
